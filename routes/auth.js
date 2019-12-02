@@ -14,10 +14,12 @@ router.get('/', async (req, res) => {
 
 // Add A USER
 
-router.post('/', async (req, res) => {
+router.post('/register', async (req, res) => {
     const user = new User({
         firstname: req.body.firstname,
         surname: req.body.surname,
+        email: req.body.email,
+        password: req.body.password,
     });
     try {
         const savedUser = await user.save();
@@ -58,6 +60,8 @@ router.patch('/:userId', async (req, res) => {
             {$set: { 
                 firstname: req.body.firstname,
                 surname: req.body.surname,
+                email: req.body.email,
+                password: req.body.password,
              } 
         });
         res.json(updatedUser);
